@@ -1,8 +1,8 @@
+const container = document.getElementById('search-results');
 const searchPhone = () => {
     const serchField = document.getElementById('search-field');
     const message = document.getElementById('message');
     const serchFieldValue = serchField.value;
-    serchField.value = '';
     // loadPhone(serchFieldValue);
     const url = `https://openapi.programming-hero.com/api/phones?search=${serchFieldValue}`;
     // console.log(url)
@@ -12,11 +12,21 @@ const searchPhone = () => {
             // console.log(data.data[0] == null)
             if (data.data[0] == null) {
                 message.style.display = 'block';
+                serchField.value = '';
+                container.innerHTML = '';
             }
+
+            // else if (data.data[0] != null) {
+            //     // message.innerHTML = '';
+            //     message.style.display = 'none';
+            //     container.textContent = '';
+            // }
 
             else {
                 displayPhone(data.data[0])
                 message.style.display = 'none';
+                // serchField.value = '';
+                // container.innerHTML = '';
             }
         })
 }
@@ -48,7 +58,7 @@ const searchPhone = () => {
         error.innerHTML = '';
     }
 
-*/ loadPhone('data');
+  loadPhone('data');*/
 
 const displayPhone = data => {
     console.log(data)
@@ -82,15 +92,11 @@ const loadPhoneDetail = id => {
         .then(data => displayPhoneDetail(data.data))
 }
 
-
-
 const displayPhoneDetail = data => {
     console.log(data)
     const phoneDetail = document.getElementById("phone-details");
     phoneDetail.textContent = '';
-    const pair = Object.entries(data.mainFeatures)
-    // data.apply(releaseDate);
-    // console.log(pair)
+    const pair = Object.entries(data.mainFeatures);
     for (const pair in data) {
         const div = document.createElement('div');
         div.classList.add('col')
