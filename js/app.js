@@ -13,15 +13,17 @@ const searchPhone = () => {
                 message.style.display = 'block';
                 // serchField.value = '';
                 container.innerHTML = '';
+                phoneDetail.textContent = '';
+
             }
 
-            // else if (data.data[0] !== null) {
+            // else if (data.data[0]) {
             //     message.innerHTML = '';
             //     phoneDetail.textContent = '';
-            //     // serchField.value = ''; 
+            //     //     // serchField.value = ''; 
 
-            //     //     message.style.display = 'none';
-            //     //     container.textContent = '';
+            //     //     //     message.style.display = 'none';
+            //     //     //     container.textContent = '';
             // }
             else {
                 displayPhone(data.data[0])
@@ -73,12 +75,12 @@ const displayPhone = data => {
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
-              <div class="card" style="width: 18rem;">
+              <div class="card bg-dark text-white" style="width: 18rem;">
                   <img src="${data.image}" class="card-img-top" alt="...">
                   <div class="card-body">
                      <h5 class="card-title">${data.phone_name}</h5>
                      <p class="card-text">${data.brand}</p>
-                     <button onclick="loadPhoneDetail('${data.slug}')" class="btn btn-primary">See details</button>
+                     <button onclick="loadPhoneDetail('${data.slug}')" class="btn btn-primary ms-auto">See details</button>
                   </div>
              </div>
                   `;
@@ -105,19 +107,20 @@ const displayPhoneDetail = data => {
         div.classList.add('col')
         div.innerHTML = ` <div class="card" style="width: 18rem;">
                 <img src="${data.image}" class="card-img-top" alt="...">
-                <div class="card-body">
+                <div class="card-body bg-dark text-white">
                    <h5 class="card-title">${data.name}</h5>
-                   <p class="card-text">${data.releaseDate}</p>
-                   <p class="card-text">${data.mainFeatures.chipSet}</p>
-                   <p class="card-text">${data.mainFeatures.displaySize}</p>
-                   <p class="card-text">${data.mainFeatures.memory}</p>
-                   <p class="card-text">${data.mainFeatures.sensors}</p>   
-                   <p class="card-text">${data.others.Bluetooth}</p>   
-                   <p class="card-text">${data.others.GPS}</p>   
-                   <p class="card-text">${data.others.NFC}</p>   
-                   <p class="card-text">${data.others.Radio}</p>   
-                   <p class="card-text">${data.others.USB}</p>   
-                   <p class="card-text">${data.others.WLAN}</p>   
+                   <p class="card-text">releaseDate: ${data.releaseDate}</p>
+                   <p class="card-text">chipSet: ${data.mainFeatures.chipSet}</p>
+                   <p class="card-text">displaySize: ${data.mainFeatures.displaySize}</p>
+                   <p class="card-text">memory: ${data.mainFeatures.memory}</p>
+                   <p class="card-text">storage: ${data.mainFeatures.storage}</p>
+                   <p class="card-text">sensors: ${data.mainFeatures.sensors}</p>   
+                   <p class="card-text">Bluetooth: ${data.others.Bluetooth}</p>   
+                   <p class="card-text">GPS: ${data.others.GPS}</p>   
+                   <p class="card-text">NFC: ${data.others.NFC}</p>   
+                   <p class="card-text">Radio: ${data.others.Radio}</p>   
+                   <p class="card-text">USB: ${data.others.USB}</p>   
+                   <p class="card-text">WLAN: ${data.others.WLAN}</p>   
                   </div>
                 </div>
                 `;
