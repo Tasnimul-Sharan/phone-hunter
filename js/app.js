@@ -1,32 +1,35 @@
 const container = document.getElementById('search-results');
+const phoneDetail = document.getElementById("phone-details");
 const searchPhone = () => {
     const serchField = document.getElementById('search-field');
     const message = document.getElementById('message');
     const serchFieldValue = serchField.value;
-    // loadPhone(serchFieldValue);
+    serchField.value = '';
     const url = `https://openapi.programming-hero.com/api/phones?search=${serchFieldValue}`;
-    // console.log(url)
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            // console.log(data.data[0] == null)
             if (data.data[0] == null) {
                 message.style.display = 'block';
-                serchField.value = '';
+                // serchField.value = '';
                 container.innerHTML = '';
             }
 
-            // else if (data.data[0] != null) {
-            //     // message.innerHTML = '';
-            //     message.style.display = 'none';
-            //     container.textContent = '';
-            // }
+            // else if (data.data[0] !== null) {
+            //     message.innerHTML = '';
+            //     phoneDetail.textContent = '';
+            //     // serchField.value = ''; 
 
+            //     //     message.style.display = 'none';
+            //     //     container.textContent = '';
+            // }
             else {
                 displayPhone(data.data[0])
                 message.style.display = 'none';
-                // serchField.value = '';
                 // container.innerHTML = '';
+                phoneDetail.textContent = '';
+                // serchField.value = '';
+
             }
         })
 }
@@ -97,7 +100,7 @@ const displayPhoneDetail = data => {
     const phoneDetail = document.getElementById("phone-details");
     phoneDetail.textContent = '';
     const pair = Object.entries(data.mainFeatures);
-    for (const pair in data) {
+    for (let pair in data) {
         const div = document.createElement('div');
         div.classList.add('col')
         div.innerHTML = ` <div class="card" style="width: 18rem;">
